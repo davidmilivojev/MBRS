@@ -1,0 +1,49 @@
+
+    digraph xtext {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+140118041800376 -> 140118041464224 [label="types:0" arrowtail=diamond dir=both]
+140118041464224[label="{string:SimpleType|}"]
+140118041800376 -> 140118041882696 [label="types:1" arrowtail=diamond dir=both]
+140118041882696[label="{integer:SimpleType|}"]
+140118041800376 -> 140118041442344 [label="types:2" arrowtail=diamond dir=both]
+140118041442344[label="{number:SimpleType|}"]
+140118041800376 -> 140118041442736 [label="entities:0" arrowtail=diamond dir=both]
+140118041442736 -> 140118041475280 [label="properties:0" arrowtail=diamond dir=both]
+140118041475280 -> 140118041464224 [label="type" ]
+140118041475280[label="{name:Property|}"]
+140118041442736 -> 140118041475448 [label="properties:1" arrowtail=diamond dir=both]
+140118041475448 -> 140118041475336 [label="type" ]
+140118041475336 -> 140118041475504 [label="properties:0" arrowtail=diamond dir=both]
+140118041475504 -> 140118041464224 [label="type" ]
+140118041475504[label="{street:Property|}"]
+140118041475336 -> 140118041475728 [label="properties:1" arrowtail=diamond dir=both]
+140118041475728 -> 140118041464224 [label="type" ]
+140118041475728[label="{city:Property|}"]
+140118041475336 -> 140118041475784 [label="properties:2" arrowtail=diamond dir=both]
+140118041475784 -> 140118041464224 [label="type" ]
+140118041475784[label="{country:Property|}"]
+140118041475336[label="{Address:Entity|actions:list=[]\l}"]
+140118041475448[label="{address:Property|}"]
+140118041442736[label="{Person:Entity|actions:list=[]\l}"]
+140118041800376 -> 140118041475336 [label="entities:1" arrowtail=diamond dir=both]
+140118041800376 -> 140118041475392 [label="entities:2" arrowtail=diamond dir=both]
+140118041475392 -> 140118041475896 [label="properties:0" arrowtail=diamond dir=both]
+140118041475896 -> 140118041475336 [label="type" ]
+140118041475896[label="{bar:Property|}"]
+140118041475392 -> 140118041476120 [label="properties:1" arrowtail=diamond dir=both]
+140118041476120 -> 140118041464224 [label="type" ]
+140118041476120[label="{ime:Property|}"]
+140118041475392[label="{Bank:Entity|actions:list=[]\l}"]
+140118041800376[label="{:EntityModel|}"]
+
+}

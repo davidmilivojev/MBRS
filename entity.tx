@@ -1,0 +1,66 @@
+/*
+  Entity DSL grammar.
+      Authors: David Milivojev
+               Aleksandar Okiljevic
+*/
+
+
+
+EntityModel:
+    types*=SimpleType       // At the beginning of model we can define
+                            // zero or more simple types.
+    roles *= Role           // may have or not role
+
+    entities+=Entity        // Each model has one or more entities.
+;
+
+Entity:
+    'entity' name=ID actions*=Action ('extends' superType=[Entity])? ('managedBy' managedBy=[Role])?
+
+    '{'
+        properties+=Property // Each entity has one or more properties.
+
+    '}'
+;
+
+Property:
+    name=ID ':' type=[Type]
+      ( ( (validationAlpha='alpha')? (validationLength=ValidationLength)? (unique='unique')? (optional='optional')? ) |
+        ( 'list' '(' zoom=CompType ')' ) )?
+
+                                // type is a reference to Type instance.
+                                // There are two built-in simple types
+                                // registered on meta-model in entity_test.py
+                                //may have or not comptype
+;
+
+ValidationLength:
+  '[' 'min' min=INT ',' 'max' max=INT ']'
+;
+
+CompType:
+  'ComboBox' | 'CheckBox' //checkbox or combobox (zoom window)
+;
+
+
+Action:
+'ADD' | 'DELETE' | 'EDIT'  //buttons
+;
+
+                              // Type can be SimpleType or Entity
+Type:
+    SimpleType | Entity
+;
+
+SimpleType:
+    'type' name=ID
+;
+
+Role:
+    'role' name=ID
+;
+
+                            // Special rule for comments. Comments start with //
+Comment:
+    /\/\/.*$/
+;

@@ -1,0 +1,51 @@
+var {{entity.name}} = require('../models/{{entity.name}}')
+
+module.exports ={
+  find : function(params, callback){
+    {{entity.name}}.find(params, function(err,{{entity.name | lower }}){
+      if(err){
+        callback(err,null)
+        return
+      }
+      callback(null,{{entity.name | lower}})
+    })
+  },
+  findById: function(id, callback){
+  {{entity.name}}.findById(id, function(err,{{entity.name | lower}}){
+    if(err){
+      callback(err, null)
+      return
+    }
+    callback(null,{{entity.name | lower}})
+  })
+},
+create: function(params, callback){
+  {{entity.name}}.create(params, function(err,{{entity.name | lower}}){
+    if(err){
+      callback(err, null)
+      return
+    }
+    callback(null,{{entity.name | lower}})
+  })
+
+},
+update: function(id, params, callback){
+  {{entity.name}}.findByIdAndUpdate(id, params, {new: true}, function(err,{{entity.name | lower}}){
+    if(err){
+      callback(err,null)
+      return
+    }
+    callback(null, {{entity.name| lower}})
+  })
+
+},
+delete: function(id, callback){
+  {{entity.name}}.findByIdAndRemove(id, function(err){
+    if(err){
+      callback(err,null)
+      return
+    }
+    callback(null,{status: "ok"})
+  })
+}
+}

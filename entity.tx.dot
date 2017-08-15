@@ -1,0 +1,55 @@
+
+    digraph xtext {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+30124936 -> 30135064[headlabel="type "]
+30124936[ label="{Property|+name:ID\l}"]
+
+30135064[ label="{*Type|}"]
+30135064 -> 30138904 [dir=back]
+30135064 -> 30119176 [dir=back]
+
+30119176 -> 30124936[arrowtail=diamond, dir=both, headlabel="properties 1..*"]
+30119176[ label="{Entity|+name:ID\lactions:list[Action]\l}"]
+
+30130312[ label="{Action|ADD\|DELETE\|EDIT}"]
+
+30117304 -> 30138904[arrowtail=diamond, dir=both, headlabel="types 0..*"]
+30117304 -> 30119176[arrowtail=diamond, dir=both, headlabel="entities 1..*"]
+30117304[ label="{EntityModel|}"]
+
+30143992[ label="{Comment|\\/\\/.*$}"]
+
+30138904[ label="{SimpleType|+name:ID\l}"]
+
+29904296[ label="{BOOL|}"]
+
+29901512[ label="{STRING|}"]
+
+29909864[ label="{FLOAT|}"]
+
+29912648[ label="{NUMBER|}"]
+29912648 -> 29909864 [dir=back]
+29912648 -> 29907080 [dir=back]
+
+29898488[ label="{ID|}"]
+
+29907080[ label="{INT|}"]
+
+29915816[ label="{BASETYPE|}"]
+29915816 -> 29912648 [dir=back]
+29915816 -> 29904296 [dir=back]
+29915816 -> 29898488 [dir=back]
+29915816 -> 29901512 [dir=back]
+
+
+}

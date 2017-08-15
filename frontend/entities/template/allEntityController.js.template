@@ -1,0 +1,75 @@
+(function(angular) {
+
+	angular.module('proApp')
+			.controller('all{{entity.name}}Controller',
+			[
+				'$scope',
+				'$state',
+				'$rootScope',
+				'{{ entity.name | lower }}Service',
+				function($scope, $state, $rootScope, {{ entity.name | lower }}Service)
+				{
+								sessionStorage.removeItem("entityId")
+								$scope.gridOptions = { enableRowSelection: true, enableRowHeaderSelection: false };
+
+								$scope.gridOptions.columnDefs = [
+									{ name: 'id', visible: false },
+									{% for property in entity.properties %}
+										{ name: '{{ property.name | capitalize }}', field: '{{property.name}}' }{%if loop.index != entity.properties |length%},
+										{% endif %}
+									{% endfor %}];
+								$scope.gridOptions.multiSelect = false;
+								$scope.gridOptions.noUnselect = true;
+								$scope.gridOptions.onRegisterApi = function (gridApi) {
+									$scope.gridApi = gridApi;
+									gridApi.selection.on.rowSelectionChanged($scope, function (row) {
+										$scope.selectedEntityId = row.entity._id;
+									});
+								};
+                refresh = function(){
+									$scope.selectedEntityId = undefined
+									sessionStorage.removeItem("entityId")
+									{{entity.name | lower}}Service.getAll(
+										function(response){
+
+											$scope.gridOptions.data = response.data.results;
+									},
+									function(response){
+										console.log(response);
+									});
+								}
+
+								$scope.add = function(){
+									$state.go('add{{entity.name}}', {
+										"operation" : "add"
+									});
+								}
+								$scope.edit = function(){
+									if($scope.selectedEntityId !== undefined){
+										sessionStorage.setItem("entityId",$scope.selectedEntityId)
+										$state.go('edit{{entity.name}}', {
+											"operation" : "edit"
+										});
+								 }else{
+									 alert("Niste nista selektovali");
+								 }
+							 }
+
+								$scope.delete = function(){
+									if($scope.selectedEntityId !== undefined){
+										{{entity.name | lower }}Service.delete($scope.selectedEntityId,
+											function(response) {
+												refresh()
+											},
+											function(response) {
+												console.log(response)
+										});
+									}else{
+										alert("Niste nista selektovali");
+									}
+								 }
+											refresh()
+				}
+			]);
+
+})(angular);

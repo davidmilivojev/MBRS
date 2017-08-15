@@ -1,0 +1,43 @@
+<form class="form-horizontal">
+<fieldset style="background: #404040;">
+
+<!-- Form Name -->
+<legend> <div style="color:white; margin-bottom: 5%;  margin-left: 45%;font-size: 26px;"> Owner - form</div></legend>
+
+
+  <div class="form-group">
+    <label style="color: white;" class="col-md-4 control-label" for="car">Car</label>
+    <div class="col-md-5">
+    <input style="border-radius:0;" id="car" name="car" type="text" ng-model="owner.car" placeholder="Car" class="form-control input-md" required="">
+    </div>
+  </div>
+  <div class="form-group">
+    <label style="color: white;" class="col-md-4 control-label" for="home">Home</label>
+    <div class="col-md-5">
+    <input style="border-radius:0;" id="home" name="home" type="text" ng-model="owner.home" placeholder="Home" class="form-control input-md" required="">
+    </div>
+  </div>
+  <!-- Button (Double) -->
+  <div class="form-group" ng-if="addFlag">
+    <label class="col-md-4 control-label" for="button1id"></label>
+    <div class="col-md-8">
+      <button id="button1id" name="button1id" ng-click="addSave()" class="btn btn-primary"style="background:#000066;border-radius:0; border: none;">Save</button>
+      <button id="Cancel" name="Cancel" class="btn btn-danger" ng-click="cancel()"style="background:#3366cc;border-radius:0; border: none;">Cancel</button>
+    </div>
+  </div>
+  <!--  EDIT APP -->
+  <div class="form-group" ng-if="editFlag">
+    <label class="col-md-4 control-label" for="button1id"></label>
+    <div class="col-md-8">
+      <button id="button1id"  name="button1id" ng-click="editSave()" class="btn btn-primary"style="background:#000066;border-radius:0; border: none;">Save</button>
+      <button id="Cancel" name="Cancel" ng-click="cancel()" class="btn btn-danger"style="background:#3366cc;border-radius:0; border: none;">Cancel</button>
+    </div>
+  </div>
+
+  <div ng-if="errors" style="position: relative; left: 35%;color:red;">
+    Pogresan unos, moguce uneti samo slova (najmanje 3 i najvise 15)!
+  </div>
+
+</fieldset>
+
+</form>

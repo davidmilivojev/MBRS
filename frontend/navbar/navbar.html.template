@@ -1,0 +1,14 @@
+<nav class="navbar navbar-default" style="background:#404040; border-radius:0; border: none;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand">Domain-Specific Language</a>
+    </div>
+    <ul class="nav navbar-nav" >
+      <li class="active"><a style="background:#404040; color:white;" href="#">Home</a></li>
+
+      {% for entity in entities %}
+      <li><a style="color:#3366cc;"ui-sref="all{{entity.name}}">{{entity.name}}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</nav>

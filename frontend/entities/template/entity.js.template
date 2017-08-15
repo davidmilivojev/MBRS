@@ -1,0 +1,50 @@
+(function (angular) {
+    'use strict';
+
+    angular.module('proApp').config(['$stateProvider', function ($stateProvider) {
+        $stateProvider
+            .state('all{{entity.name}}',{
+           	   url:'/{{entity.name | lower}}',
+           	  	views:
+           	  	  {
+           	  		'navbar':{
+           	  			templateUrl: 'scripts/navbar/navbar.html',
+                    controller : 'navbarController'
+           	  		},
+           	  		'content':{
+           	  			templateUrl: 'scripts/entity/{{entity.name | lower}}/all{{entity.name}}.html',
+           	  			controller: 'all{{entity.name}}Controller'
+           	  		}
+                }
+            })
+            .state('add{{entity.name}}',{
+           	   url:'/{{entity.name}}/{operation}',
+           	  	views:
+           	  	  {
+           	  		'navbar':{
+           	  			templateUrl: 'scripts/navbar/navbar.html',
+                    controller : 'navbarController'
+           	  		},
+           	  		'content':{
+           	  			templateUrl: 'scripts/entity/{{entity.name | lower}}/addEdit{{entity.name}}.html',
+           	  			controller: 'addEdit{{entity.name}}Controller'
+           	  		}
+                }
+            })
+            .state('edit{{entity.name}}',{
+               url:'/{{entity.name}}/{operation}',
+                views:
+                  {
+                  'navbar':{
+                    templateUrl: 'scripts/navbar/navbar.html',
+                    controller : 'navbarController'
+                  },
+                  'content':{
+                    templateUrl: 'scripts/entity/{{entity.name | lower}}/addEdit{{entity.name}}.html',
+                    controller: 'addEdit{{entity.name}}Controller'
+                  }
+                }
+            })
+    }]);
+
+})(angular);

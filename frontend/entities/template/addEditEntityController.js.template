@@ -1,0 +1,77 @@
+(function(angular) {
+
+	angular.module('proApp')
+			.controller('addEdit{{entity.name}}Controller',
+			[
+				'$scope',
+				'$state',
+				'$rootScope',
+				'$stateParams',
+				'{{entity.name | lower}}Service',
+				function($scope, $state, $rootScope,$stateParams, {{entity.name | lower}}Service)
+				{
+						var operation = $stateParams.operation;
+
+                        $scope.errors = false
+
+						if (operation === undefined || operation === null)
+						$state.go('all{{entity.name}}')
+
+						function refresh(){
+
+						}
+
+						refresh();
+
+						if( operation === 'add'){
+							$scope.app = {}
+							$scope.addFlag = true
+							$scope.addSave = function (){
+
+							{{entity.name | lower }}Service.add($scope.{{entity.name | lower }},
+									function(response) {
+										$state.go('all{{entity.name}}')
+									},
+									function(response) {
+										console.log(response)
+                                        $scope.errors = true
+								});
+							}
+						}
+
+						//editing
+
+
+						if( operation === 'edit'){
+							$scope.editFlag = true
+							var id = sessionStorage.getItem('entityId')
+							{{entity.name | lower}}Service.get(id,
+								function(response){
+									$scope.{{entity.name | lower}} = response.data.results
+
+								},
+								function(response) {
+									console.log(response)
+
+							})
+
+							$scope.editSave = function (){
+							{{entity.name | lower}}Service.edit($scope.{{entity.name | lower}},
+									function(response) {
+										$state.go('all{{entity.name}}')
+									},
+									function(response) {
+										console.log(response)
+											$scope.errors = true
+								})
+							}
+						}
+
+						$scope.cancel = function(){
+							$state.go('all{{entity.name}}')
+						}
+
+				}
+			]);
+
+})(angular);
