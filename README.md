@@ -53,4 +53,4 @@ To run the example do the following:
   This will produce Java files `Address.java` and `Person.java` in `srcgen`
   folder that corresponds to entities from the Person model.
 
-# jsdProject
+#MBRS-Project
